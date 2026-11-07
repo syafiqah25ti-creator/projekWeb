@@ -1,4 +1,4 @@
-<!--
+    <!--
 
 =========================================================
 * Volt Pro - Premium Bootstrap 5 Dashboard
@@ -36,8 +36,7 @@
     <meta name="theme-color" content="#ffffff">
 
     {{-- Start Css --}}
-    <!-- Volt CSS -->
-    <link type="text/css" href="{{ asset('assets-admin/css/volt.css') }}" rel="stylesheet">
+    @include('layouts.admin.css')
     {{-- End Css --}}
 
 </head>
