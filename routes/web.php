@@ -9,7 +9,7 @@ use App\Http\Controllers\PengalamanController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AuthController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -37,3 +37,9 @@ Route::delete('dokumen/{dokuman}', [DokumenController::class, 'destroy'])->name(
 Route::put('dokumen/{dokuman}', [DokumenController::class, 'update'])->name('dokumen.update');
 
 Route::post('biodata/{biodata}/foto', [BiodataController::class, 'updateFoto'])->name('biodata.foto');
+
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->middleware('auth')
+    ->name('auth.logout');
