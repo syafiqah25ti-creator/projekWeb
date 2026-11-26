@@ -52,6 +52,7 @@
                                 <tr>
                                     <th class="border-0">NAME</th>
                                     <th class="border-0">EMAIL</th>
+                                    <th class="border-0">ROLE</th>
                                     <th class="border-0">PASSWORD</th>
                                     <th class="border-0 text-center">ACTION</th>
                                 </tr>
@@ -61,6 +62,7 @@
                                     <tr>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
+                                        <td>{{ $item->role }}</td>
                                         <td>{{ $item->password }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('user.edit', $item->id) }}"
@@ -94,7 +96,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="4" class="text-center">Belum ada data.</td>
+                                        <td colspan="5" class="text-center">Belum ada data.</td>
                                     </tr>
                                 @endforelse
                             </tbody>

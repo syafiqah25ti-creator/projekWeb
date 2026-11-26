@@ -80,6 +80,21 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
+
+                                <!-- Role -->
+                                <div class="mb-3">
+                                    <label for="role" class="form-label">Role</label>
+                                    <select id="role" name="role"
+                                        class="form-select @error('role') is-invalid @enderror">
+                                        <option value="">-- Pilih Role --</option>
+                                        <option value="Super Admin" {{ old('role', $dataUser->role) == 'Super Admin' ? 'selected' : '' }}>Super Admin</option>
+                                        <option value="mitra" {{ old('role', $dataUser->role) == 'mitra' ? 'selected' : '' }}>Mitra</option>
+                                        <option value="Pelanggan" {{ old('role', $dataUser->role) == 'Pelanggan' ? 'selected' : '' }}>Pelanggan</option>
+                                    </select>
+                                    @error('role')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
 
                             <div class="col-lg-5 col-sm-6">

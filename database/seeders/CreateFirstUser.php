@@ -15,6 +15,7 @@ class CreateFirstUser extends Seeder
             'name'     => 'Admin',
             'email'    => 'gatot@pcr.ac.id',
             'password' => Hash::make('gatotkaca'),
+            'role'     => 'Super Admin',
         ]);
     }
 }

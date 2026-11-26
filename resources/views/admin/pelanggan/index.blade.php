@@ -45,10 +45,12 @@
 
                                 <div class="col-md-2">
                                     <select name="gender" class="form-select" onchange="this.form.submit()">
-                                        <option value="">All</option>
+                                        <option value="">All Genders</option>
                                         <option value="Male" {{ request('gender') == 'Male' ? 'selected' : '' }}>Male
                                         </option>
                                         <option value="Female" {{ request('gender') == 'Female' ? 'selected' : '' }}>Female
+                                        </option>
+                                        <option value="Other" {{ request('gender') == 'Other' ? 'selected' : '' }}>Other
                                         </option>
                                     </select>
                                 </div>
@@ -77,6 +79,7 @@
                         <table id="table-pelanggan" class="table table-centered table-nowrap mb-0 rounded">
                             <thead class="thead-light">
                                 <tr>
+                                    <th class="border-0">#</th>
                                     <th class="border-0">First Name</th>
                                     <th class="border-0">Last Name</th>
                                     <th class="border-0">Birthday</th>
@@ -87,8 +90,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($dataPelanggan as $item)
+                                @forelse ($dataPelanggan as $item)
                                     <tr>
+                                        <td>{{ ($dataPelanggan->currentPage() - 1) * $dataPelanggan->perPage() + $loop->iteration }}</td>
                                         <td>{{ $item->first_name }}</td>
                                         <td>{{ $item->last_name }}</td>
                                         <td>{{ $item->birthday }}</td>
@@ -124,7 +128,11 @@
                                             </form>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="8" class="text-center">Data pelanggan tidak ditemukan.</td>
+                                    </tr>
+                                @endforelse
 
                             </tbody>
                         </table>

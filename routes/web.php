@@ -19,10 +19,17 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('question/store', [QuestionController::class, 'store'])
     ->name('question.store');
 
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::middleware(['checkislogin'])->group(function () {
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::resource('pelanggan', PelangganController::class);
-Route::resource('user', UserController::class);
+    Route::middleware(['checkrole:Super Admin'])->group(function () {
+        Route::resource('user', UserController::class);
+    });
+
+    Route::middleware(['checkrole:Super Admin,mitra'])->group(function () {
+        Route::resource('pelanggan', PelangganController::class);
+    });
+});
 
 Route::resource('biodata', BiodataController::class)->parameters([
     'biodata' => 'biodata',
